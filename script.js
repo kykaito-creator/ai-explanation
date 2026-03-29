@@ -667,6 +667,10 @@ const slideEl = document.querySelector(".slide");
 const detailBox = document.querySelector(".detail-inner");
 const sizeButtons = document.querySelectorAll(".size-btn");
 const zoomBtn = document.getElementById("zoom-btn");
+const fxTheme = document.getElementById("fx-theme");
+const fxBg = document.getElementById("fx-bg");
+const fxBoard = document.getElementById("fx-board");
+const fxTransition = document.getElementById("fx-transition");
 const focusBtn = document.getElementById("focus-btn");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
 const appEl = document.querySelector(".app");
@@ -1008,6 +1012,48 @@ sizeButtons.forEach((btn) => {
       setTextZoom(enabled);
     });
   }
+
+  const effectStorageKey = "ai-briefing-effects";
+  const effectDefaults = {
+    theme: "night",
+    bg: "classic",
+    board: "diagonal",
+    transition: "fade"
+  };
+  const storedEffects = (() => {
+    try {
+      return JSON.parse(localStorage.getItem(effectStorageKey) || "{}");
+    } catch (error) {
+      return {};
+    }
+  })();
+  const effectSelects = {
+    theme: fxTheme,
+    bg: fxBg,
+    board: fxBoard,
+    transition: fxTransition
+  };
+  const initEffects = () => {
+    Object.keys(effectSelects).forEach((key) => {
+      const value = storedEffects[key] || document.body.dataset[key] || effectDefaults[key];
+      document.body.dataset[key] = value;
+      const select = effectSelects[key];
+      if (select) {
+        select.value = value;
+        select.addEventListener("change", () => {
+          const next = select.value;
+          document.body.dataset[key] = next;
+          storedEffects[key] = next;
+          try {
+            localStorage.setItem(effectStorageKey, JSON.stringify(storedEffects));
+          } catch (error) {
+            // ignore storage errors
+          }
+        });
+      }
+    });
+  };
+  initEffects();
 
   focusBtn.addEventListener("click", () => {
     const enabled = appEl.classList.toggle("focus-mode");

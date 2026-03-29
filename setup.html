@@ -13,7 +13,7 @@
     gtag("config", "G-KHQQV2JC7B");
   </script>
 </head>
-<body class="setup-page">
+<body class="setup-page" data-theme="signal" data-bg="signal" data-board="diagonal" data-transition="fade">
   <div class="ambient" aria-hidden="true">
     <div class="orb orb-one"></div>
     <div class="orb orb-two"></div>
@@ -21,6 +21,9 @@
     <div class="grid"></div>
     <div class="signal"></div>
     <div class="uplift"></div>
+    <div class="wind"></div>
+    <div class="mist"></div>
+    <div class="aurora"></div>
   </div>
 
   <div class="petal-field" aria-hidden="true">
@@ -80,6 +83,36 @@
           </div>
           <div class="control-group zoom-controls" role="group" aria-label="文字拡大">
             <button id="setup-zoom-btn" class="btn" type="button" aria-pressed="false">文字拡大</button>
+          </div>
+          <div class="control-group fx-controls" role="group" aria-label="演出">
+            <select id="setup-fx-theme" class="fx-select" aria-label="テーマ">
+              <option value="night">テーマ: ナイト</option>
+              <option value="forest">テーマ: フォレスト</option>
+              <option value="tide">テーマ: タイド</option>
+              <option value="signal">テーマ: シグナル</option>
+              <option value="paper">テーマ: ペーパー</option>
+            </select>
+            <select id="setup-fx-bg" class="fx-select" aria-label="背景">
+              <option value="classic">背景: クラシック</option>
+              <option value="wind">背景: ウィンド</option>
+              <option value="tide">背景: タイド</option>
+              <option value="signal">背景: シグナル</option>
+              <option value="aurora">背景: オーロラ</option>
+            </select>
+            <select id="setup-fx-board" class="fx-select" aria-label="ボード">
+              <option value="diagonal">ボード: 斜線</option>
+              <option value="dots">ボード: ドット</option>
+              <option value="mesh">ボード: メッシュ</option>
+              <option value="waves">ボード: ウェーブ</option>
+              <option value="circuit">ボード: サーキット</option>
+            </select>
+            <select id="setup-fx-transition" class="fx-select" aria-label="切り替え">
+              <option value="fade">切替: フェード</option>
+              <option value="slide">切替: スライド</option>
+              <option value="zoom">切替: ズーム</option>
+              <option value="flip">切替: フリップ</option>
+              <option value="sweep">切替: スイープ</option>
+            </select>
           </div>
           <div class="control-group view-controls" role="group" aria-label="表示モード">
             <button id="setup-focus-btn" class="btn" type="button" aria-pressed="false">Focus</button>
