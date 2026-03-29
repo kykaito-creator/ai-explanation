@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI環境構築ロードマップ | AI指揮官ブリーフィング</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHQQV2JC7B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-KHQQV2JC7B");
+  </script>
+</head>
+<body class="roadmap-page">
+  <div class="ambient" aria-hidden="true">
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
+    <div class="grid"></div>
+    <div class="mist"></div>
+  </div>
+
+  <div class="petal-field" aria-hidden="true">
+    <span class="petal" style="--x: 10%; --d: 22s; --delay: -4s; --size: 10px; --drift: 24px;"></span>
+    <span class="petal" style="--x: 26%; --d: 24s; --delay: -9s; --size: 12px; --drift: 36px;"></span>
+    <span class="petal" style="--x: 44%; --d: 20s; --delay: -5s; --size: 9px; --drift: 22px;"></span>
+    <span class="petal" style="--x: 62%; --d: 26s; --delay: -12s; --size: 13px; --drift: 44px;"></span>
+    <span class="petal" style="--x: 78%; --d: 21s; --delay: -7s; --size: 10px; --drift: 28px;"></span>
+    <span class="petal" style="--x: 92%; --d: 25s; --delay: -10s; --size: 11px; --drift: 40px;"></span>
+  </div>
+
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">AI</div>
+        <div class="brand-text">
+          <div class="brand-title">AI環境構築ロードマップ</div>
+          <div class="brand-sub">指揮官のための完全攻略</div>
+        </div>
+      </div>
+
+      <div class="quick-links">
+        <div class="quick-title">クイックリンク</div>
+        <div class="quick-list">
+          <a class="quick-link" href="index.html">本編スライド</a>
+          <a class="quick-link" href="prompt.html">プロンプト設計</a>
+          <a class="quick-link" href="roadmap.html">環境構築</a>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-title">セクション</div>
+        <ul id="roadmap-nav" class="nav-list" aria-label="環境構築スライド一覧"></ul>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="hint">操作</div>
+        <div class="hint-row">← → キー / クリック</div>
+        <div class="hint-row">キーワードをクリックで詳細</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="progress">
+          <span id="roadmap-progress-number">01</span>
+          <span class="progress-divider">/</span>
+          <span id="roadmap-progress-total">08</span>
+        </div>
+        <div class="progress-bar"><span id="roadmap-progress-bar"></span></div>
+        <div class="controls">
+          <div class="control-group size-controls" role="group" aria-label="スライドサイズ">
+            <button class="btn size-btn" data-size="small" type="button">S</button>
+            <button class="btn size-btn is-active" data-size="medium" type="button">M</button>
+            <button class="btn size-btn" data-size="large" type="button">L</button>
+          </div>
+          <div class="control-group view-controls" role="group" aria-label="表示モード">
+            <button id="roadmap-focus-btn" class="btn" type="button" aria-pressed="false">Focus</button>
+            <button id="roadmap-fullscreen-btn" class="btn" type="button" aria-pressed="false">Full</button>
+          </div>
+          <div class="control-group nav-controls">
+            <button id="roadmap-prev" class="btn" type="button">Prev</button>
+            <button id="roadmap-next" class="btn btn-primary" type="button">Next</button>
+          </div>
+        </div>
+      </header>
+
+      <section class="slide" aria-live="polite">
+        <div class="slide-meta">
+          <span id="roadmap-section" class="slide-section">OSとインターフェース</span>
+          <span id="roadmap-variant" class="slide-variant">講義</span>
+          <span id="roadmap-number" class="slide-number">01</span>
+        </div>
+        <h1 id="roadmap-title" class="slide-title"></h1>
+        <h2 id="roadmap-headline" class="slide-headline"></h2>
+        <div id="roadmap-body" class="slide-body"></div>
+        <div class="keyword-area">
+          <div class="keyword-label">キーワード</div>
+          <div id="roadmap-chips" class="keyword-chips"></div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="detail">
+      <div class="detail-inner">
+        <div class="detail-title">詳細ノート</div>
+        <div id="roadmap-keyword" class="detail-keyword">キーワードを選択</div>
+        <div id="roadmap-text" class="detail-text">本文内のハイライト語をクリックすると、補足の説明が表示されます。</div>
+        <div class="detail-footer">
+          <div class="detail-foot-label">このスライドの狙い</div>
+          <div id="roadmap-goal" class="detail-goal"></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script src="roadmap.js"></script>
+</body>
+</html>
