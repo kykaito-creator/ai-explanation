@@ -194,6 +194,7 @@ const progressBar = document.getElementById("prompt-progress-bar");
 const prevBtn = document.getElementById("prompt-prev");
 const nextBtn = document.getElementById("prompt-next");
 const sizeButtons = document.querySelectorAll(".size-btn");
+const zoomBtn = document.getElementById("prompt-zoom-btn");
 const focusBtn = document.getElementById("prompt-focus-btn");
 const fullscreenBtn = document.getElementById("prompt-fullscreen-btn");
 const ttsBtn = document.getElementById("prompt-tts-btn");
@@ -389,11 +390,26 @@ sizeButtons.forEach((btn) => {
   btn.addEventListener("click", () => setSlideSize(btn.dataset.size));
 });
 
-focusBtn.addEventListener("click", () => {
-  const enabled = appEl.classList.toggle("focus-mode");
-  focusBtn.classList.toggle("active", enabled);
-  focusBtn.setAttribute("aria-pressed", String(enabled));
-});
+  const setTextZoom = (enabled) => {
+    document.body.classList.toggle("text-zoom", enabled);
+    if (zoomBtn) {
+      zoomBtn.classList.toggle("active", enabled);
+      zoomBtn.setAttribute("aria-pressed", String(enabled));
+    }
+  };
+
+  if (zoomBtn) {
+    zoomBtn.addEventListener("click", () => {
+      const enabled = !document.body.classList.contains("text-zoom");
+      setTextZoom(enabled);
+    });
+  }
+
+  focusBtn.addEventListener("click", () => {
+    const enabled = appEl.classList.toggle("focus-mode");
+    focusBtn.classList.toggle("active", enabled);
+    focusBtn.setAttribute("aria-pressed", String(enabled));
+  });
 
 fullscreenBtn.addEventListener("click", async () => {
   try {

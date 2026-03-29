@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI運用・構築ロードマップ | AI指揮官ブリーフィング</title>
+  <title>AI環境構築スタートガイド | AI指揮官ブリーフィング</title>
   <link rel="stylesheet" href="styles.css" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHQQV2JC7B"></script>
   <script>
@@ -13,13 +13,14 @@
     gtag("config", "G-KHQQV2JC7B");
   </script>
 </head>
-<body class="roadmap-page">
+<body class="setup-page">
   <div class="ambient" aria-hidden="true">
     <div class="orb orb-one"></div>
     <div class="orb orb-two"></div>
     <div class="orb orb-three"></div>
     <div class="grid"></div>
-    <div class="mist"></div>
+    <div class="signal"></div>
+    <div class="uplift"></div>
   </div>
 
   <div class="petal-field" aria-hidden="true">
@@ -36,8 +37,8 @@
       <div class="brand">
         <div class="brand-mark">AI</div>
         <div class="brand-text">
-          <div class="brand-title">AI運用・構築ロードマップ</div>
-          <div class="brand-sub">実戦で迷わない運用設計</div>
+          <div class="brand-title">AI環境構築スタートガイド</div>
+          <div class="brand-sub">指揮官のための入門ブート</div>
         </div>
       </div>
 
@@ -53,7 +54,7 @@
 
       <nav class="nav">
         <div class="nav-title">セクション</div>
-        <ul id="roadmap-nav" class="nav-list" aria-label="環境構築スライド一覧"></ul>
+        <ul id="setup-nav" class="nav-list" aria-label="環境構築スタートガイド一覧"></ul>
       </nav>
 
       <div class="sidebar-foot">
@@ -66,11 +67,11 @@
     <main class="main">
       <header class="topbar">
         <div class="progress">
-          <span id="roadmap-progress-number">01</span>
+          <span id="setup-progress-number">01</span>
           <span class="progress-divider">/</span>
-          <span id="roadmap-progress-total">08</span>
+          <span id="setup-progress-total">16</span>
         </div>
-        <div class="progress-bar"><span id="roadmap-progress-bar"></span></div>
+        <div class="progress-bar"><span id="setup-progress-bar"></span></div>
         <div class="controls">
           <div class="control-group size-controls" role="group" aria-label="スライドサイズ">
             <button class="btn size-btn" data-size="small" type="button">S</button>
@@ -78,42 +79,42 @@
             <button class="btn size-btn" data-size="large" type="button">L</button>
           </div>
           <div class="control-group zoom-controls" role="group" aria-label="文字拡大">
-            <button id="roadmap-zoom-btn" class="btn" type="button" aria-pressed="false">文字拡大</button>
+            <button id="setup-zoom-btn" class="btn" type="button" aria-pressed="false">文字拡大</button>
           </div>
           <div class="control-group view-controls" role="group" aria-label="表示モード">
-            <button id="roadmap-focus-btn" class="btn" type="button" aria-pressed="false">Focus</button>
-            <button id="roadmap-fullscreen-btn" class="btn" type="button" aria-pressed="false">Full</button>
+            <button id="setup-focus-btn" class="btn" type="button" aria-pressed="false">Focus</button>
+            <button id="setup-fullscreen-btn" class="btn" type="button" aria-pressed="false">Full</button>
           </div>
           <div class="control-group tts-controls" role="group" aria-label="読み上げ">
-            <button id="roadmap-tts-btn" class="btn" type="button" aria-pressed="false">読み上げ</button>
-            <button id="roadmap-tts-auto-btn" class="btn" type="button" aria-pressed="false">Auto</button>
+            <button id="setup-tts-btn" class="btn" type="button" aria-pressed="false">読み上げ</button>
+            <button id="setup-tts-auto-btn" class="btn" type="button" aria-pressed="false">Auto</button>
             <label class="tts-label">速さ
-              <input id="roadmap-tts-rate" class="tts-range" type="range" min="0.7" max="1.3" step="0.1" value="1.0" />
+              <input id="setup-tts-rate" class="tts-range" type="range" min="0.7" max="1.3" step="0.1" value="1.0" />
             </label>
             <label class="tts-label">調子
-              <input id="roadmap-tts-pitch" class="tts-range" type="range" min="0.8" max="1.2" step="0.1" value="1.0" />
+              <input id="setup-tts-pitch" class="tts-range" type="range" min="0.8" max="1.2" step="0.1" value="1.0" />
             </label>
-            <select id="roadmap-tts-voice" class="tts-select" aria-label="音声"></select>
+            <select id="setup-tts-voice" class="tts-select" aria-label="音声"></select>
           </div>
           <div class="control-group nav-controls">
-            <button id="roadmap-prev" class="btn" type="button">Prev</button>
-            <button id="roadmap-next" class="btn btn-primary" type="button">Next</button>
+            <button id="setup-prev" class="btn" type="button">Prev</button>
+            <button id="setup-next" class="btn btn-primary" type="button">Next</button>
           </div>
         </div>
       </header>
 
       <section class="slide" aria-live="polite">
         <div class="slide-meta">
-          <span id="roadmap-section" class="slide-section">OSとインターフェース</span>
-          <span id="roadmap-variant" class="slide-variant">講義</span>
-          <span id="roadmap-number" class="slide-number">01</span>
+          <span id="setup-section" class="slide-section">OSとインターフェース</span>
+          <span id="setup-variant" class="slide-variant">講義</span>
+          <span id="setup-number" class="slide-number">01</span>
         </div>
-        <h1 id="roadmap-title" class="slide-title"></h1>
-        <h2 id="roadmap-headline" class="slide-headline"></h2>
-        <div id="roadmap-body" class="slide-body"></div>
+        <h1 id="setup-title" class="slide-title"></h1>
+        <h2 id="setup-headline" class="slide-headline"></h2>
+        <div id="setup-body" class="slide-body"></div>
         <div class="keyword-area">
           <div class="keyword-label">キーワード</div>
-          <div id="roadmap-chips" class="keyword-chips"></div>
+          <div id="setup-chips" class="keyword-chips"></div>
         </div>
       </section>
     </main>
@@ -121,16 +122,16 @@
     <aside class="detail">
       <div class="detail-inner">
         <div class="detail-title">詳細ノート</div>
-        <div id="roadmap-keyword" class="detail-keyword">キーワードを選択</div>
-        <div id="roadmap-text" class="detail-text">本文内のハイライト語をクリックすると、補足の説明が表示されます。</div>
+        <div id="setup-keyword" class="detail-keyword">キーワードを選択</div>
+        <div id="setup-text" class="detail-text">本文内のハイライト語をクリックすると、補足の説明が表示されます。</div>
         <div class="detail-footer">
           <div class="detail-foot-label">このスライドの狙い</div>
-          <div id="roadmap-goal" class="detail-goal"></div>
+          <div id="setup-goal" class="detail-goal"></div>
         </div>
       </div>
     </aside>
   </div>
 
-  <script src="roadmap.js"></script>
+  <script src="setup.js"></script>
 </body>
 </html>

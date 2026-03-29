@@ -620,6 +620,7 @@ const nextBtn = document.getElementById("next-btn");
 const slideEl = document.querySelector(".slide");
 const detailBox = document.querySelector(".detail-inner");
 const sizeButtons = document.querySelectorAll(".size-btn");
+const zoomBtn = document.getElementById("zoom-btn");
 const focusBtn = document.getElementById("focus-btn");
 const fullscreenBtn = document.getElementById("fullscreen-btn");
 const appEl = document.querySelector(".app");
@@ -947,11 +948,26 @@ sizeButtons.forEach((btn) => {
   btn.addEventListener("click", () => setSlideSize(btn.dataset.size));
 });
 
-focusBtn.addEventListener("click", () => {
-  const enabled = appEl.classList.toggle("focus-mode");
-  focusBtn.classList.toggle("active", enabled);
-  focusBtn.setAttribute("aria-pressed", String(enabled));
-});
+  const setTextZoom = (enabled) => {
+    document.body.classList.toggle("text-zoom", enabled);
+    if (zoomBtn) {
+      zoomBtn.classList.toggle("active", enabled);
+      zoomBtn.setAttribute("aria-pressed", String(enabled));
+    }
+  };
+
+  if (zoomBtn) {
+    zoomBtn.addEventListener("click", () => {
+      const enabled = !document.body.classList.contains("text-zoom");
+      setTextZoom(enabled);
+    });
+  }
+
+  focusBtn.addEventListener("click", () => {
+    const enabled = appEl.classList.toggle("focus-mode");
+    focusBtn.classList.toggle("active", enabled);
+    focusBtn.setAttribute("aria-pressed", String(enabled));
+  });
 
 const syncFullscreenButton = () => {
   const isFull = Boolean(document.fullscreenElement);

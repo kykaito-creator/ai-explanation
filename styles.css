@@ -187,6 +187,91 @@ body.roadmap-page .mist {
   pointer-events: none;
 }
 
+body.setup-page {
+  background: radial-gradient(circle at top left, #1b2438 0%, #0b0f1a 48%, #070a12 100%);
+  position: relative;
+}
+
+body.setup-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(108, 209, 255, 0.2), transparent 55%),
+    radial-gradient(ellipse at 80% 10%, rgba(70, 240, 195, 0.15), transparent 55%),
+    radial-gradient(ellipse at 70% 85%, rgba(255, 179, 214, 0.18), transparent 60%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+  animation: setupGlow 16s ease-in-out infinite;
+}
+
+body.setup-page::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 1px, transparent 1px, transparent 40px),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0px, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 6px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+  animation: setupSweep 22s linear infinite;
+}
+
+body.setup-page .orb-one {
+  background: radial-gradient(circle, rgba(70, 240, 195, 0.45), transparent 60%);
+}
+
+body.setup-page .orb-two {
+  background: radial-gradient(circle, rgba(108, 209, 255, 0.38), transparent 60%);
+}
+
+body.setup-page .orb-three {
+  background: radial-gradient(circle, rgba(255, 179, 214, 0.3), transparent 60%);
+}
+
+body.setup-page .grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 68px 68px;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 1) 25%, transparent 75%);
+}
+
+body.setup-page .signal {
+  position: absolute;
+  inset: -20% -20%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(70, 240, 195, 0.2), transparent 60%),
+    repeating-linear-gradient(110deg, rgba(255, 255, 255, 0.07) 0px, rgba(255, 255, 255, 0.07) 36px, transparent 36px, transparent 120px);
+  filter: blur(4px);
+  opacity: 0.85;
+  mix-blend-mode: screen;
+  animation: signalDrift 18s ease-in-out infinite;
+  pointer-events: none;
+}
+
+body.setup-page .uplift {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: -35%;
+  height: 70%;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(108, 209, 255, 0.25), transparent 60%),
+    radial-gradient(circle at 60% 90%, rgba(70, 240, 195, 0.22), transparent 60%),
+    radial-gradient(circle at 85% 75%, rgba(255, 179, 214, 0.22), transparent 65%),
+    linear-gradient(180deg, rgba(11, 15, 26, 0) 0%, rgba(11, 15, 26, 0.88) 90%);
+  filter: blur(6px);
+  opacity: 0.9;
+  mix-blend-mode: screen;
+  animation: upliftFlow 14s ease-in-out infinite;
+  pointer-events: none;
+}
+
 @keyframes mistRise {
   0% {
     transform: translate3d(0, 18%, 0) scale(1);
@@ -225,6 +310,60 @@ body.roadmap-page .mist {
     transform: translateY(-6%);
   }
 }
+
+@keyframes setupGlow {
+  0% {
+    transform: translate3d(0, 5%, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(0, -4%, 0) scale(1.05);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(0, 5%, 0) scale(1);
+    opacity: 0.55;
+  }
+}
+
+@keyframes setupSweep {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-4%);
+  }
+}
+
+@keyframes signalDrift {
+  0% {
+    transform: translate3d(-6%, 2%, 0) rotate(0.3deg) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(6%, -3%, 0) rotate(-0.4deg) scale(1.05);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(-6%, 2%, 0) rotate(0.3deg) scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes upliftFlow {
+  0% {
+    transform: translate3d(0, 16%, 0) scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translate3d(0, -6%, 0) scale(1.06);
+    opacity: 0.98;
+  }
+  100% {
+    transform: translate3d(0, 16%, 0) scale(1);
+    opacity: 0.75;
+  }
+}
 \n  50% {\n    transform: translate3d(0, -6%, 0) scale(1.06);\n    opacity: 0.95;\n  }\n  100% {\n    transform: translate3d(0, 18%, 0) scale(1);\n    opacity: 0.7;\n  }\n}
 
 body[data-slide-size="small"] {
@@ -243,6 +382,32 @@ body[data-slide-size="large"] {
   --headline-size: 22px;
   --body-size: 17px;
   --text-max: 72ch;
+}
+
+body.text-zoom {
+  --slide-max: 100%;
+  --slide-pad: clamp(32px, 3vw, 56px);
+  --title-size: clamp(30px, 3vw, 44px);
+  --headline-size: clamp(22px, 2.4vw, 34px);
+  --body-size: clamp(18px, 1.7vw, 26px);
+  --text-max: 100%;
+}
+
+body.text-zoom .slide-title,
+body.text-zoom .slide-headline,
+body.text-zoom .slide-body {
+  max-width: 100%;
+}
+
+body.text-zoom .main {
+  padding-left: clamp(16px, 2vw, 32px);
+  padding-right: clamp(16px, 2vw, 32px);
+}
+
+body.text-zoom .slide {
+  max-width: 100%;
+  width: 100%;
+  align-self: stretch;
 }
 
 .ambient {
