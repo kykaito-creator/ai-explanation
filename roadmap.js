@@ -240,12 +240,61 @@ const nextBtn = document.getElementById("roadmap-next");
 const sizeButtons = document.querySelectorAll(".size-btn");
 const focusBtn = document.getElementById("roadmap-focus-btn");
 const fullscreenBtn = document.getElementById("roadmap-fullscreen-btn");
+const ttsBtn = document.getElementById("roadmap-tts-btn");
+const ttsAutoBtn = document.getElementById("roadmap-tts-auto-btn");
+const ttsRate = document.getElementById("roadmap-tts-rate");
+const ttsPitch = document.getElementById("roadmap-tts-pitch");
+const ttsVoice = document.getElementById("roadmap-tts-voice");
 const appEl = document.querySelector(".app");
 const detailBox = document.querySelector(".detail-inner");
 const slideEl = document.querySelector(".slide");
 
 let currentIndex = 0;
 let currentKeyword = null;
+let ttsActive = false;
+let ttsAuto = false;
+let voiceList = [];
+let selectedVoice = "";
+const supportsSpeech = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+
+const speechReplacements = [
+  { pattern: /GitHub/g, replacement: "ギットハブ" },
+  { pattern: /Git/g, replacement: "ギット" },
+  { pattern: /Hugging Face/g, replacement: "ハギングフェイス" },
+  { pattern: /WSL2/g, replacement: "ダブリューエスエルツー" },
+  { pattern: /WSL/g, replacement: "ダブリューエスエル" },
+  { pattern: /CLI/g, replacement: "シーエルアイ" },
+  { pattern: /GPU/g, replacement: "ジーピーユー" },
+  { pattern: /CPU/g, replacement: "シーピーユー" },
+    { pattern: /VRAM/g, replacement: "ブイラム" },
+    { pattern: /CUDA/g, replacement: "クーダ" },
+    { pattern: /RTX\s*40\/50シリーズ/g, replacement: "アールティーエックスよんじゅう・ごじゅうシリーズ" },
+    { pattern: /PATH/g, replacement: "パス" },
+  { pattern: /Python/g, replacement: "パイソン" },
+  { pattern: /Conda/g, replacement: "コンダ" },
+  { pattern: /Docker/g, replacement: "ドッカー" },
+  { pattern: /Ubuntu/g, replacement: "ウブントゥ" },
+  { pattern: /Linux/g, replacement: "リナックス" },
+  { pattern: /VS Code/g, replacement: "ブイエスコード" },
+  { pattern: /LM Studio/g, replacement: "エルエムスタジオ" },
+  { pattern: /RAG/g, replacement: "ラグ" },
+  { pattern: /LLM/g, replacement: "エルエルエム" },
+  { pattern: /nvidia-smi/gi, replacement: "エヌビディアエスエムアイ" },
+  { pattern: /学び方/g, replacement: "まなびかた" },
+  { pattern: /使い方/g, replacement: "つかいかた" },
+  { pattern: /作り方/g, replacement: "つくりかた" },
+  { pattern: /戦い方/g, replacement: "たたかいかた" },
+  { pattern: /動き方/g, replacement: "うごきかた" },
+  { pattern: /読み方/g, replacement: "よみかた" },
+  { pattern: /見方/g, replacement: "みかた" },
+  { pattern: /書き方/g, replacement: "かきかた" },
+  { pattern: /考え方/g, replacement: "かんがえかた" },
+  { pattern: /進め方/g, replacement: "すすめかた" }
+];
+
+const normalizeForSpeech = (text) => {
+  return speechReplacements.reduce((acc, rule) => acc.replace(rule.pattern, rule.replacement), text);
+};
 
 const toIndex = (index) => String(index + 1).padStart(2, "0");
 
@@ -342,16 +391,29 @@ const renderSlide = () => {
   slideEl.classList.add("swap");
 };
 
-const goTo = (index) => {
-  if (index < 0) {
-    currentIndex = roadmapSlides.length - 1;
-  } else if (index >= roadmapSlides.length) {
-    currentIndex = 0;
-  } else {
-    currentIndex = index;
-  }
-  renderSlide();
-};
+  const goTo = (index, options = {}) => {
+    const wrap = options.wrap !== false;
+    const shouldStop = options.stopSpeech !== false;
+    let nextIndex = index;
+    if (wrap) {
+      if (index < 0) {
+        nextIndex = roadmapSlides.length - 1;
+      } else if (index >= roadmapSlides.length) {
+        nextIndex = 0;
+      }
+    } else {
+      if (index < 0) {
+        nextIndex = 0;
+      } else if (index >= roadmapSlides.length) {
+        nextIndex = roadmapSlides.length - 1;
+      }
+    }
+    currentIndex = nextIndex;
+    if (shouldStop) {
+      stopSpeech();
+    }
+    renderSlide();
+  };
 
 const setSlideSize = (size) => {
   document.body.dataset.slideSize = size;
@@ -393,6 +455,142 @@ document.addEventListener("fullscreenchange", syncFullscreenButton);
 
 prevBtn.addEventListener("click", () => goTo(currentIndex - 1));
 nextBtn.addEventListener("click", () => goTo(currentIndex + 1));
+
+const getSlideText = () => {
+  const parts = [
+    titleEl.textContent,
+    headlineEl.textContent,
+    bodyEl.innerText
+  ];
+  return normalizeForSpeech(parts.filter(Boolean).join("。"));
+};
+
+const populateVoices = () => {
+  if (!supportsSpeech || !ttsVoice) {
+    return;
+  }
+  voiceList = window.speechSynthesis.getVoices();
+  const preferred = voiceList.filter((voice) => voice.lang && voice.lang.toLowerCase().startsWith("ja"));
+  const list = preferred.length ? preferred : voiceList;
+  ttsVoice.innerHTML = "";
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "システム既定";
+  ttsVoice.appendChild(defaultOption);
+  list.forEach((voice) => {
+    const option = document.createElement("option");
+    option.value = voice.name;
+    option.textContent = `${voice.name} (${voice.lang})`;
+    ttsVoice.appendChild(option);
+  });
+  if (list.length && !selectedVoice) {
+    selectedVoice = list[0].name;
+    ttsVoice.value = selectedVoice;
+  }
+};
+
+  const stopSpeech = (clearAuto = false) => {
+    if (!supportsSpeech || !ttsBtn) {
+      return;
+    }
+    window.speechSynthesis.cancel();
+    ttsActive = false;
+    if (clearAuto) {
+      ttsAuto = false;
+      if (ttsAutoBtn) {
+        ttsAutoBtn.classList.remove("active");
+        ttsAutoBtn.setAttribute("aria-pressed", "false");
+      }
+    }
+    ttsBtn.textContent = "読み上げ";
+    ttsBtn.classList.remove("is-speaking");
+    ttsBtn.setAttribute("aria-pressed", "false");
+  };
+
+const speakSlide = () => {
+  if (!supportsSpeech || !ttsBtn) {
+    return;
+  }
+  const text = getSlideText();
+  if (!text.trim()) {
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "ja-JP";
+  utterance.rate = ttsRate ? Number(ttsRate.value) : 1.0;
+  utterance.pitch = ttsPitch ? Number(ttsPitch.value) : 1.0;
+  const chosenVoice = voiceList.find((voice) => voice.name === selectedVoice);
+  if (chosenVoice) {
+    utterance.voice = chosenVoice;
+  }
+    utterance.onend = () => {
+      if (ttsAuto) {
+        const nextIndex = currentIndex + 1;
+        if (nextIndex >= roadmapSlides.length) {
+          stopSpeech(true);
+          return;
+        }
+        goTo(nextIndex, { wrap: false, stopSpeech: false });
+        setTimeout(() => {
+          if (ttsAuto) {
+            speakSlide();
+          }
+        }, 350);
+        return;
+      }
+      stopSpeech();
+    };
+  utterance.onerror = () => stopSpeech();
+  ttsActive = true;
+  ttsBtn.textContent = "停止";
+  ttsBtn.classList.add("is-speaking");
+  ttsBtn.setAttribute("aria-pressed", "true");
+  window.speechSynthesis.speak(utterance);
+};
+
+if (ttsBtn) {
+  if (!supportsSpeech) {
+    ttsBtn.textContent = "読み上げ不可";
+    ttsBtn.classList.add("is-disabled");
+    if (ttsAutoBtn) {
+      ttsAutoBtn.classList.add("is-disabled");
+    }
+    if (ttsRate) {
+      ttsRate.disabled = true;
+    }
+    if (ttsPitch) {
+      ttsPitch.disabled = true;
+    }
+    if (ttsVoice) {
+      ttsVoice.disabled = true;
+    }
+  } else {
+      ttsBtn.addEventListener("click", () => {
+        if (ttsActive) {
+          stopSpeech(true);
+        } else {
+          speakSlide();
+        }
+      });
+    if (ttsAutoBtn) {
+      ttsAutoBtn.addEventListener("click", () => {
+        ttsAuto = !ttsAuto;
+        ttsAutoBtn.classList.toggle("active", ttsAuto);
+        ttsAutoBtn.setAttribute("aria-pressed", String(ttsAuto));
+      });
+    }
+    if (ttsVoice) {
+      ttsVoice.addEventListener("change", () => {
+        selectedVoice = ttsVoice.value;
+      });
+    }
+    populateVoices();
+    if ("onvoiceschanged" in window.speechSynthesis) {
+      window.speechSynthesis.onvoiceschanged = populateVoices;
+    }
+  }
+}
 
 window.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight" || event.key === "PageDown") {

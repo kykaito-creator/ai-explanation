@@ -599,6 +599,45 @@ body[data-slide-size="large"] {
   color: var(--accent-strong);
 }
 
+.btn.is-speaking {
+  background: rgba(70, 240, 195, 0.2);
+  border-color: rgba(70, 240, 195, 0.6);
+  color: var(--accent-strong);
+}
+
+.btn.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.tts-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--muted);
+  padding: 0 4px;
+}
+
+.tts-range {
+  width: 90px;
+}
+
+.tts-select {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-family: var(--body-font);
+}
+
+.tts-select option {
+  color: #0b0f17;
+}
+
 .btn-primary {
   background: linear-gradient(120deg, var(--accent), var(--accent-rose));
   color: #04121a;
