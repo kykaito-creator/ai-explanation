@@ -37,7 +37,8 @@ body {
   font-family: var(--body-font);
   color: var(--text);
   background: radial-gradient(circle at top left, #1a2540 0%, #0b0f17 45%, #070a11 100%);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body[data-theme="night"] {
@@ -116,7 +117,8 @@ body[data-theme="paper"] {
 }
 
 body[data-bg="wind"] {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: radial-gradient(circle at top right, #1f2a1f 0%, #0b1216 45%, #080a12 100%);
 }
 
@@ -896,6 +898,31 @@ body.text-zoom .slide {
   font-size: 12px;
   color: var(--muted);
   line-height: 1.6;
+}
+
+.sidebar-credit {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.credit-title {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.credit-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.credit-handle {
+  color: var(--accent-strong);
 }
 
 .hint {
