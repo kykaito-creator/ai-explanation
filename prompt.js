@@ -376,6 +376,15 @@ const speechReplacements = [
   { pattern: /RAG/g, replacement: "ラグ" },
   { pattern: /LLM/g, replacement: "エルエルエム" },
   { pattern: /nvidia-smi/gi, replacement: "エヌビディアエスエムアイ" },
+  { pattern: /〇〇/g, replacement: "まるまる" },
+  { pattern: /言語的/g, replacement: "げんごてき" },
+  { pattern: /上げる/g, replacement: "あげる" },
+  { pattern: /方向修正/g, replacement: "ほうこうしゅうせい" },
+  { pattern: /方向性/g, replacement: "ほうこうせい" },
+  { pattern: /方向/g, replacement: "ほうこう" },
+  { pattern: /方法/g, replacement: "ほうほう" },
+  { pattern: /の方が/g, replacement: "のほうが" },
+
   { pattern: /学び方/g, replacement: "まなびかた" },
   { pattern: /使い方/g, replacement: "つかいかた" },
   { pattern: /作り方/g, replacement: "つくりかた" },
@@ -758,3 +767,6 @@ buildNav();
 setSlideSize("medium");
 syncFullscreenButton();
 renderSlide();
+
+
+
