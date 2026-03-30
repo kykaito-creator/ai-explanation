@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>教科書メーカー - Slide Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body data-theme="dark" data-layout="center">
+  <header id="app-header">
+    <div class="brand">
+      <span class="brand-main">教科書メーカー</span>
+      <span class="brand-sub">Slide Studio</span>
+    </div>
+    <div class="brand-tag">AI-powered high-speed</div>
+  </header>
+
+  <div id="app">
+    <aside id="left-panel">
+      <div class="panel-header">
+        <span class="title">スライド作成</span>
+        <div class="panel-header-actions">
+          <span class="badge">左パネル</span>
+        </div>
+      </div>
+      <div class="panel-body">
+        <section class="panel-section">
+          <h3>スライド一覧</h3>
+          <div class="inline-row">
+            <button id="slide-add" class="primary" type="button">追加</button>
+            <button id="slide-duplicate" type="button">複製</button>
+            <button id="slide-delete" class="danger" type="button">削除</button>
+          </div>
+          <div id="slide-list" class="list"></div>
+        </section>
+
+        <section class="panel-section">
+          <h3>内容</h3>
+          <label for="input-section">セクション</label>
+          <input id="input-section" type="text" placeholder="例: イントロダクション" />
+          <label for="input-title">タイトル</label>
+          <input id="input-title" type="text" placeholder="例: AI環境構築の全体像" />
+          <label for="input-headline">ヘッドライン</label>
+          <input id="input-headline" type="text" placeholder="例: まずは舞台作りから" />
+          <label for="input-body">本文</label>
+          <textarea id="input-body" placeholder="本文を入力"></textarea>
+          <label for="input-notes">補足メモ</label>
+          <textarea id="input-notes" placeholder="話す内容・注釈"></textarea>
+        </section>
+      </div>
+    </aside>
+
+    <main id="center-panel">
+      <div class="toolbar">
+        <div class="toolbar-group">
+          <button id="nav-prev" type="button">前</button>
+          <button id="nav-next" type="button">次</button>
+          <label class="pill">スライド
+            <select id="slide-select"></select>
+          </label>
+        </div>
+        <div class="toolbar-group">
+          <label class="pill">ズーム
+            <input id="zoom-range" type="range" min="0.6" max="1.4" step="0.1" value="1" />
+          </label>
+          <button id="export-json" class="primary" type="button">JSON書き出し</button>
+          <label class="file-button pill">読み込み
+            <input id="import-json" type="file" accept="application/json" />
+          </label>
+        </div>
+      </div>
+
+      <div class="preview">
+        <div id="page-container" class="page-container">
+          <div class="page">
+            <div class="slide-card" id="slide-card">
+              <div class="slide-kicker" id="preview-section">セクション</div>
+              <h1 class="slide-title" id="preview-title">タイトルを入力</h1>
+              <h2 class="slide-headline" id="preview-headline">ヘッドラインを入力</h2>
+              <div class="slide-body" id="preview-body"></div>
+              <div class="slide-notes" id="preview-notes"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <aside id="right-panel">
+      <div class="panel-header">
+        <span class="title">設定</span>
+        <div class="panel-header-actions">
+          <span class="badge">右パネル</span>
+        </div>
+      </div>
+      <div class="panel-body">
+        <section class="panel-section">
+          <h3>見た目</h3>
+          <label for="theme-select">テーマ</label>
+          <select id="theme-select">
+            <option value="dark">ダーク</option>
+            <option value="light">ライト</option>
+          </select>
+          <label for="layout-select">レイアウト</label>
+          <select id="layout-select">
+            <option value="center">中央寄せ</option>
+            <option value="left">左寄せ</option>
+          </select>
+        </section>
+        <section class="panel-section">
+          <h3>プロジェクト</h3>
+          <div class="hint">自動保存されます（このブラウザ内のみ）。</div>
+          <button id="clear-local" type="button" class="danger">ローカル保存をクリア</button>
+        </section>
+        <section class="panel-section">
+          <h3>ヒント</h3>
+          <div class="hint">
+            左パネルで内容を入力 → 中央のプレビューに反映されます。<br />
+            JSON書き出しでスライドデータを保存できます。
+          </div>
+        </section>
+      </div>
+    </aside>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

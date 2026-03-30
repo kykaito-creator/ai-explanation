@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI環境構築スタートガイド | AI指揮官ブリーフィング</title>
+  <title>Claude Code　最新AIの中身を見てみよう | AI指揮官ブリーフィング</title>
   <link rel="stylesheet" href="styles.css" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-KHQQV2JC7B"></script>
   <script>
@@ -13,26 +13,26 @@
     gtag("config", "G-KHQQV2JC7B");
   </script>
 </head>
-<body class="setup-page" data-theme="signal" data-bg="signal" data-board="diagonal" data-transition="fade">
+<body class="agent-page" data-theme="signal" data-bg="aurora" data-board="circuit" data-transition="slide">
   <div class="ambient" aria-hidden="true">
     <div class="orb orb-one"></div>
     <div class="orb orb-two"></div>
     <div class="orb orb-three"></div>
     <div class="grid"></div>
-    <div class="signal"></div>
-    <div class="uplift"></div>
     <div class="wind"></div>
     <div class="mist"></div>
+    <div class="signal"></div>
+    <div class="uplift"></div>
     <div class="aurora"></div>
   </div>
 
   <div class="petal-field" aria-hidden="true">
-    <span class="petal" style="--x: 10%; --d: 22s; --delay: -4s; --size: 10px; --drift: 24px;"></span>
-    <span class="petal" style="--x: 26%; --d: 24s; --delay: -9s; --size: 12px; --drift: 36px;"></span>
-    <span class="petal" style="--x: 44%; --d: 20s; --delay: -5s; --size: 9px; --drift: 22px;"></span>
-    <span class="petal" style="--x: 62%; --d: 26s; --delay: -12s; --size: 13px; --drift: 44px;"></span>
+    <span class="petal" style="--x: 12%; --d: 20s; --delay: -3s; --size: 10px; --drift: 26px;"></span>
+    <span class="petal" style="--x: 28%; --d: 24s; --delay: -9s; --size: 12px; --drift: 38px;"></span>
+    <span class="petal" style="--x: 46%; --d: 22s; --delay: -5s; --size: 9px; --drift: 22px;"></span>
+    <span class="petal" style="--x: 63%; --d: 26s; --delay: -12s; --size: 13px; --drift: 46px;"></span>
     <span class="petal" style="--x: 78%; --d: 21s; --delay: -7s; --size: 10px; --drift: 28px;"></span>
-    <span class="petal" style="--x: 92%; --d: 25s; --delay: -10s; --size: 11px; --drift: 40px;"></span>
+    <span class="petal" style="--x: 90%; --d: 25s; --delay: -10s; --size: 11px; --drift: 40px;"></span>
   </div>
 
   <div class="app">
@@ -40,8 +40,8 @@
       <div class="brand">
         <div class="brand-mark">AI</div>
         <div class="brand-text">
-          <div class="brand-title">AI環境構築スタートガイド</div>
-          <div class="brand-sub">指揮官のための入門ブート</div>
+          <div class="brand-title">Claude Code　最新AIの中身を見てみよう</div>
+          <div class="brand-sub">Claude Code / エージェント運用</div>
         </div>
       </div>
 
@@ -58,7 +58,7 @@
 
       <nav class="nav">
         <div class="nav-title">セクション</div>
-        <ul id="setup-nav" class="nav-list" aria-label="環境構築スタートガイド一覧"></ul>
+        <ul id="agent-nav" class="nav-list" aria-label="Claude Code　最新AIの中身を見てみよう スライド一覧"></ul>
       </nav>
 
       <div class="sidebar-foot">
@@ -71,11 +71,11 @@
     <main class="main">
       <header class="topbar">
         <div class="progress">
-          <span id="setup-progress-number">01</span>
+          <span id="agent-progress-number">01</span>
           <span class="progress-divider">/</span>
-          <span id="setup-progress-total">16</span>
+          <span id="agent-progress-total">21</span>
         </div>
-        <div class="progress-bar"><span id="setup-progress-bar"></span></div>
+        <div class="progress-bar"><span id="agent-progress-bar"></span></div>
         <div class="controls">
           <div class="control-group size-controls" role="group" aria-label="スライドサイズ">
             <button class="btn size-btn" data-size="small" type="button">S</button>
@@ -83,31 +83,31 @@
             <button class="btn size-btn" data-size="large" type="button">L</button>
           </div>
           <div class="control-group zoom-controls" role="group" aria-label="文字拡大">
-            <button id="setup-zoom-btn" class="btn" type="button" aria-pressed="false">文字拡大</button>
+            <button id="agent-zoom-btn" class="btn" type="button" aria-pressed="false">文字拡大</button>
           </div>
           <div class="control-group fx-controls" role="group" aria-label="演出">
-            <select id="setup-fx-theme" class="fx-select" aria-label="テーマ">
+            <select id="agent-fx-theme" class="fx-select" aria-label="テーマ">
               <option value="night">テーマ: ナイト</option>
               <option value="forest">テーマ: フォレスト</option>
               <option value="tide">テーマ: タイド</option>
               <option value="signal">テーマ: シグナル</option>
               <option value="paper">テーマ: ペーパー</option>
             </select>
-            <select id="setup-fx-bg" class="fx-select" aria-label="背景">
+            <select id="agent-fx-bg" class="fx-select" aria-label="背景">
               <option value="classic">背景: クラシック</option>
               <option value="wind">背景: ウィンド</option>
               <option value="tide">背景: タイド</option>
               <option value="signal">背景: シグナル</option>
               <option value="aurora">背景: オーロラ</option>
             </select>
-            <select id="setup-fx-board" class="fx-select" aria-label="ボード">
+            <select id="agent-fx-board" class="fx-select" aria-label="ボード">
               <option value="diagonal">ボード: 斜線</option>
               <option value="dots">ボード: ドット</option>
               <option value="mesh">ボード: メッシュ</option>
               <option value="waves">ボード: ウェーブ</option>
               <option value="circuit">ボード: サーキット</option>
             </select>
-            <select id="setup-fx-transition" class="fx-select" aria-label="切り替え">
+            <select id="agent-fx-transition" class="fx-select" aria-label="切り替え">
               <option value="fade">切替: フェード</option>
               <option value="slide">切替: スライド</option>
               <option value="zoom">切替: ズーム</option>
@@ -116,39 +116,39 @@
             </select>
           </div>
           <div class="control-group view-controls" role="group" aria-label="表示モード">
-            <button id="setup-focus-btn" class="btn" type="button" aria-pressed="false">Focus</button>
-            <button id="setup-fullscreen-btn" class="btn" type="button" aria-pressed="false">Full</button>
+            <button id="agent-focus-btn" class="btn" type="button" aria-pressed="false">Focus</button>
+            <button id="agent-fullscreen-btn" class="btn" type="button" aria-pressed="false">Full</button>
           </div>
           <div class="control-group tts-controls" role="group" aria-label="読み上げ">
-            <button id="setup-tts-btn" class="btn" type="button" aria-pressed="false">読み上げ</button>
-            <button id="setup-tts-auto-btn" class="btn" type="button" aria-pressed="false">Auto</button>
+            <button id="agent-tts-btn" class="btn" type="button" aria-pressed="false">読み上げ</button>
+            <button id="agent-tts-auto-btn" class="btn" type="button" aria-pressed="false">Auto</button>
             <label class="tts-label">速さ
-              <input id="setup-tts-rate" class="tts-range" type="range" min="0.7" max="1.3" step="0.1" value="1.0" />
+              <input id="agent-tts-rate" class="tts-range" type="range" min="0.7" max="1.3" step="0.1" value="1.0" />
             </label>
             <label class="tts-label">調子
-              <input id="setup-tts-pitch" class="tts-range" type="range" min="0.8" max="1.2" step="0.1" value="1.0" />
+              <input id="agent-tts-pitch" class="tts-range" type="range" min="0.8" max="1.2" step="0.1" value="1.0" />
             </label>
-            <select id="setup-tts-voice" class="tts-select" aria-label="音声"></select>
+            <select id="agent-tts-voice" class="tts-select" aria-label="音声"></select>
           </div>
           <div class="control-group nav-controls">
-            <button id="setup-prev" class="btn" type="button">Prev</button>
-            <button id="setup-next" class="btn btn-primary" type="button">Next</button>
+            <button id="agent-prev" class="btn" type="button">Prev</button>
+            <button id="agent-next" class="btn btn-primary" type="button">Next</button>
           </div>
         </div>
       </header>
 
       <section class="slide" aria-live="polite">
         <div class="slide-meta">
-          <span id="setup-section" class="slide-section">OSとインターフェース</span>
-          <span id="setup-variant" class="slide-variant">講義</span>
-          <span id="setup-number" class="slide-number">01</span>
+          <span id="agent-section" class="slide-section">エージェント概論</span>
+          <span id="agent-variant" class="slide-variant">講義</span>
+          <span id="agent-number" class="slide-number">01</span>
         </div>
-        <h1 id="setup-title" class="slide-title"></h1>
-        <h2 id="setup-headline" class="slide-headline"></h2>
-        <div id="setup-body" class="slide-body"></div>
+        <h1 id="agent-title" class="slide-title"></h1>
+        <h2 id="agent-headline" class="slide-headline"></h2>
+        <div id="agent-body" class="slide-body"></div>
         <div class="keyword-area">
           <div class="keyword-label">キーワード</div>
-          <div id="setup-chips" class="keyword-chips"></div>
+          <div id="agent-chips" class="keyword-chips"></div>
         </div>
       </section>
     </main>
@@ -156,16 +156,16 @@
     <aside class="detail">
       <div class="detail-inner">
         <div class="detail-title">詳細ノート</div>
-        <div id="setup-keyword" class="detail-keyword">キーワードを選択</div>
-        <div id="setup-text" class="detail-text">本文内のハイライト語をクリックすると、補足の説明が表示されます。</div>
+        <div id="agent-keyword" class="detail-keyword">キーワードを選択</div>
+        <div id="agent-text" class="detail-text">本文内のハイライト語をクリックすると、補足の説明が表示されます。</div>
         <div class="detail-footer">
           <div class="detail-foot-label">このスライドの狙い</div>
-          <div id="setup-goal" class="detail-goal"></div>
+          <div id="agent-goal" class="detail-goal"></div>
         </div>
       </div>
     </aside>
   </div>
 
-  <script src="setup.js"></script>
+  <script src="agent.js"></script>
 </body>
 </html>
