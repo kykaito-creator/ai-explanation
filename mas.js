@@ -258,6 +258,110 @@ const masSlides = [
       "バージョン管理": "モデル・データ・パラメータの履歴管理。",
       "説明責任": "結果の根拠と限界を示す姿勢。"
     }
+  },
+  {
+    id: 11,
+    section: "導入と運用",
+    navLabel: "実装準備",
+    badge: "講義",
+    title: "導入準備チェックリスト（ガチ準備）",
+    headline: "データ・ルール・意思決定者を先に揃える",
+    goal: "MAS導入前に必要な準備項目を把握する。",
+    paragraphs: [
+      "準備1: [[目的]]と[[KPI]]を固定し、どの意思決定に使うかを決める。",
+      "準備2: [[現実データ]]（人口・移動・施設・ログ）と[[ルール情報]]を集める。",
+      "準備3: [[シナリオ]]と[[実験計画]]を用意し、比較軸を明確にする。",
+      "準備4: [[予算]]・[[計算資源]]・[[評価体制]]を決め、運用責任者を置く。"
+    ],
+    details: {
+      "目的": "何を判断するためのシミュレーションかを定義する。",
+      "KPI": "成果を測る具体的な評価指標。",
+      "現実データ": "人口分布、移動ログ、施設データなどの実データ。",
+      "ルール情報": "政策ルール、営業時間、交通規制などの条件。",
+      "シナリオ": "試したい政策・施策パターンの一覧。",
+      "実験計画": "比較方法や試行回数、統計の取り方。",
+      "予算": "APIコストや人件費を含めた運用コスト。",
+      "計算資源": "クラウド/オンプレの計算枠やGPUなど。",
+      "評価体制": "結果の妥当性を判断する担当者とプロセス。"
+    }
+  },
+  {
+    id: 12,
+    section: "導入と運用",
+    navLabel: "構築スタック",
+    badge: "講義",
+    title: "何で構築する？実装スタックの選び方",
+    headline: "シミュレータ×LLM×データ基盤で組む",
+    goal: "構築に必要な主要コンポーネントを理解する。",
+    paragraphs: [
+      "オープン系: Pythonなら[[Mesa]]、教育・可視化なら[[NetLogo]]、空間重視なら[[GAMA]]。",
+      "商用系: [[AnyLogic]]はABM/離散/システムダイナミクスを統合できる。",
+      "LLM連携: [[OpenAI]]/[[Anthropic]]/[[Gemini]]/[[Mistral]]/[[Cohere]]のAPIを接続。",
+      "データ層: [[地図データ]]・[[統計データ]]・[[ログデータ]]をETLし再利用する。"
+    ],
+    details: {
+      "Mesa": "Pythonのエージェントベース・モデリング框架。",
+      "NetLogo": "学習から研究まで使えるABMプラットフォーム。",
+      "GAMA": "空間表現に強いオープンソースのABM環境。",
+      "AnyLogic": "産業用途で広く使われる商用シミュレーションソフト。",
+      "OpenAI": "高性能LLMをAPIで提供するプラットフォーム。",
+      "Anthropic": "Claude系モデルを提供するLLMプラットフォーム。",
+      "Gemini": "GoogleのGemini APIで提供されるモデル群。",
+      "Mistral": "欧州発の高性能モデルを提供するAPI/オープンウェイト。",
+      "Cohere": "RAGやエージェント向けの商用モデル群。",
+      "地図データ": "道路・施設・地域境界などの空間情報。",
+      "統計データ": "人口、移動、経済指標などの基礎統計。",
+      "ログデータ": "行動履歴や需要ログなどの時系列データ。"
+    }
+  },
+  {
+    id: 13,
+    section: "導入と運用",
+    navLabel: "商用LLM",
+    badge: "講義",
+    title: "今使える商用LLM/APIの選択肢",
+    headline: "用途別にモデルを使い分ける",
+    goal: "主要LLMの選択肢と特徴を把握する。",
+    paragraphs: [
+      "高精度/長文: OpenAIの[[GPT-5.4]]系（[[GPT-5.4 mini]]/[[GPT-5.4 nano]]）。",
+      "エージェント/推論: Anthropicの[[Claude Opus 4.6]]、[[Claude Sonnet 4.5]]。",
+      "コスパ重視: Googleの[[Gemini 2.5 Flash]]/[[Gemini 2.5 Flash-Lite]]/[[Gemini 2.5 Pro]]。",
+      "欧州系API: [[Mistral Large 3]]/[[Mistral Small 4]]、[[Cohere Command A]]。"
+    ],
+    details: {
+      "GPT-5.4": "OpenAIのフラッグシップモデル。",
+      "GPT-5.4 mini": "高性能とコストのバランスが良いモデル。",
+      "GPT-5.4 nano": "大量処理に向く低コストモデル。",
+      "Claude Opus 4.6": "Anthropicの最上位モデル。",
+      "Claude Sonnet 4.5": "高性能と速度のバランス型モデル。",
+      "Gemini 2.5 Flash": "価格性能が良い高速モデル。",
+      "Gemini 2.5 Flash-Lite": "低コスト・低遅延に特化したモデル。",
+      "Gemini 2.5 Pro": "複雑な推論やコーディング向けの上位モデル。",
+      "Mistral Large 3": "高性能な汎用モデル。",
+      "Mistral Small 4": "軽量で扱いやすいモデル。",
+      "Cohere Command A": "エージェント・RAG向けの高性能モデル。"
+    }
+  },
+  {
+    id: 14,
+    section: "導入と運用",
+    navLabel: "実装パターン",
+    badge: "講義",
+    title: "LLMをMASに組み込む実装パターン",
+    headline: "LLMは意思決定器として使う",
+    goal: "LLM活用の設計パターンを理解する。",
+    paragraphs: [
+      "パターン1: [[ルール+LLM]]。普段はルール、迷いだけLLMで判断。",
+      "パターン2: [[役割プロンプト]]で人格・価値観を固定し、行動ログを保存。",
+      "パターン3: [[RAG]]で政策文書や地域ルールを参照させる。",
+      "パターン4: [[サンドボックス]]で安全に試行し、結果のみ反映。"
+    ],
+    details: {
+      "ルール+LLM": "ルール主体で安定性を担保し、難所だけLLMで補助。",
+      "役割プロンプト": "職業や価値観を固定して一貫性を出す設計。",
+      "RAG": "外部ドキュメントを検索して回答に反映する手法。",
+      "サンドボックス": "安全な環境で試してから本番に反映する設計。"
+    }
   }
 ];
 const navList = document.getElementById("mas-nav");
@@ -324,6 +428,17 @@ const speechReplacements = [
   { pattern: /RAG/g, replacement: "ラグ" },
   { pattern: /MAS/g, replacement: "エムエーエス" },
   { pattern: /LLM/g, replacement: "エルエルエム" },
+  { pattern: /KPI/g, replacement: "ケーピーアイ" },
+  { pattern: /ETL/g, replacement: "イーティーエル" },
+  { pattern: /OpenAI/g, replacement: "オープンエーアイ" },
+  { pattern: /Anthropic/g, replacement: "アンソロピック" },
+  { pattern: /Gemini/g, replacement: "ジェミニ" },
+  { pattern: /Mistral/g, replacement: "ミストラル" },
+  { pattern: /Cohere/g, replacement: "コヒア" },
+  { pattern: /AnyLogic/g, replacement: "エニーロジック" },
+  { pattern: /NetLogo/g, replacement: "ネットロゴ" },
+  { pattern: /Mesa/g, replacement: "メサ" },
+  { pattern: /GAMA/g, replacement: "ガマ" },
   { pattern: /nvidia-smi/gi, replacement: "エヌビディアエスエムアイ" },
   { pattern: /〇〇/g, replacement: "まるまる" },
   { pattern: /言語的/g, replacement: "げんごてき" },
